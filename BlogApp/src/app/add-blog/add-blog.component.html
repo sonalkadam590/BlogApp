@@ -1,0 +1,67 @@
+<h1>Add Blog</h1>
+
+<div class="row" style="margin-top: 40px;">
+
+  <div class="form-group">
+    <label for="">Title</label>
+    <input [(ngModel)]="title" type="text" class="form-control">
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="form-group">
+      <label for="notice">Content</label>
+      <textarea name="contents" id="contents" class="form-control" rows="6" required="required"
+        placeholder="Enter your Content here" [(ngModel)]="contents"></textarea>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+
+    <div class="form-group">
+      <label for="">File</label>
+      <input (change)="onSelectThumbnail($event)" type="file" class="form-control">
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="radio" name="blog_category" value="public_blog" checked (change)="onItemChange($event)">
+          Public<br>
+          <input type="radio" name="blog_category" value="shared_blog" (change)="onItemChange($event)"> Private<br>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <select (change)="onCategoryChange($event)">
+            <option *ngFor="let b of blog_types" value="{{b.id}}">{{b.cat_name}}</option>
+            </select>
+
+
+        
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <button (click)="onAdd()" class="btn btn-success">Add</button>
+          <button (click)="onCancel()" class="btn btn-danger" style="margin-left: 10px;">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6" *ngIf="imageUrl != undefined">
+    <label for="">Preview</label>
+    <img class="thumbnail" [src]="imageUrl" alt="">
+  </div>
+</div>

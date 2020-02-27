@@ -1,0 +1,62 @@
+
+<div class="row">
+  <div class="pull-right">
+    <!-- <div class="btn-toolbar" role="toolbar" aria-label="...">
+      <button (click)="showList()" type="button" class="btn btn-default">
+        <i class="glyphicon glyphicon-th-list"></i>
+      </button>
+      <button (click)="showGrid()" type="button" class="btn btn-default">
+        <i class="glyphicon glyphicon-th"></i>
+      </button>
+    </div> -->
+    <button (click)="toggleGrid()" type="button" class="btn btn-primary">
+      <i
+        [class.glyphicon-align-justify]="isGrid == true"
+        [class.glyphicon-th-large]="isGrid == false"
+        class="glyphicon"></i>
+    </button>
+  </div>
+</div>
+
+<div class="row" *ngIf="isGrid == true">
+  <div
+    (click)="onSelectMovie(movie)"
+    style="margin-top: 10px; cursor: pointer"
+    class="col-md-3"
+    *ngFor="let movie of movies">
+
+    <img class="thumbnail" src="http://localhost:3000/{{movie.thumbnail}}" alt="">
+    <button (click)="onDelete(movie)" class="btn btn-danger delete-button"><i class="glyphicon glyphicon-trash"></i></button>
+    <div class="title">{{movie.title}}</div>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="isGrid == false">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Rating</th>
+        <th>Directors</th>
+        <th>Writers</th>
+        <th>Stars</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies">
+        <td>{{movie.id}}</td>
+        <td>{{movie.title}}</td>
+        <td>{{movie.year}}</td>
+        <td>{{movie.rating}}</td>
+        <td>{{movie.directors}}</td>
+        <td>{{movie.writers}}</td>
+        <td>{{movie.stars}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
